@@ -13,7 +13,7 @@ const ImageTiles = () => {
       {[1, 2, 3, 4].map((_) => (
         <div css={{ display: "flex", flexDirection: "column" }}>
           <div css={{ width: "100%" }}>
-            <img css={{ width: "100%", aspectRatio: "1 / 1" }} src={dummy_image} />
+            <img css={{ width: "100%", aspectRatio: "1 / 1" }} src={dummy_image} alt="" />
           </div>
           <p>Dummy Text</p>
         </div>
