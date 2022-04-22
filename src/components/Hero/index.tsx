@@ -4,19 +4,20 @@ import { mq } from "../../device";
 import { MainButton } from "../Button";
 import Text from "../Text";
 
+
 const styledHero = mq({
   display: "grid",
   gridTemplateColumns: ["1fr", "1fr", "1fr 1fr"],
 });
 
-const Hero: React.FC = () => {
+const Hero: React.FC<any> = ({data}:any) => {
   return (
     <div css={styledHero}>
       <div css={{ width: "100%" }}>
         <img
         alt=""
           css={{ width: "100%", height: "100%", objectFit: "cover" }}
-          src="https://images.unsplash.com/photo-1644982647844-5ee1bdc5b114?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
+          src={data?.fields?.heroImage?.fields?.file?.url}
         />
       </div>
       <div
@@ -39,10 +40,10 @@ const Hero: React.FC = () => {
             textAlign: "left"
           }}
         >
-          THE ULTIMATE SHAVE
+          {data?.fields?.title}
         </h2>
-        <Text>No subscription required.</Text>
-        <MainButton>Buy for $18</MainButton>
+        <Text>{data?.fields?.subscriptionStatus}</Text>
+        <MainButton>{data?.fields?.price}</MainButton>
       </div>
     </div>
   );

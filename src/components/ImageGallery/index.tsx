@@ -1,4 +1,3 @@
-import { dummy_image } from "../../app.constants";
 import { mq } from "../../device";
 
 const styledImageTiles = mq({
@@ -7,15 +6,15 @@ const styledImageTiles = mq({
   gap: "1rem",
 });
 
-const ImageTiles = () => {
+const ImageTiles:React.FC<any> = ({data}) => {
   return (
     <div css={styledImageTiles}>
-      {[1, 2, 3, 4].map((_) => (
-        <div css={{ display: "flex", flexDirection: "column" }}>
+      {Array.isArray(data) && data?.map((product:any, i:number) => (
+        <div css={{ display: "flex", flexDirection: "column" }} key={i}>
           <div css={{ width: "100%" }}>
-            <img css={{ width: "100%", aspectRatio: "1 / 1" }} src={dummy_image} alt="" />
+            <img css={{ width: "100%", aspectRatio: "1 / 1" }} src={product?.fields?.image?.fields?.file?.url} alt="" />
           </div>
-          <p>Dummy Text</p>
+          <p>{product?.fields?.caption}</p>
         </div>
       ))}
     </div>
