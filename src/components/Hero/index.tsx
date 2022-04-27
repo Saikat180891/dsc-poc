@@ -3,6 +3,7 @@ import { darkBlue, beige } from "../../globalStyles/variables.style";
 import { mq } from "../../device";
 import { MainButton } from "../Button";
 import Text from "../Text";
+import { useOptimizely } from "../../hooks";
 
 
 const styledHero = mq({
@@ -11,6 +12,7 @@ const styledHero = mq({
 });
 
 const Hero: React.FC<any> = ({data}:any) => {
+  const optimizely = useOptimizely();
   return (
     <div css={styledHero}>
       <div css={{ width: "100%" }}>
@@ -43,7 +45,7 @@ const Hero: React.FC<any> = ({data}:any) => {
           {data?.fields?.title}
         </h2>
         <Text>{data?.fields?.subscriptionStatus}</Text>
-        <MainButton>{data?.fields?.price}</MainButton>
+        <MainButton>{optimizely === "change-price" ? "Buy for $20" :  data?.fields?.price}</MainButton>
       </div>
     </div>
   );

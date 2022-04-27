@@ -1,4 +1,5 @@
 import { mq } from "../../device";
+import { useOptimizely } from "../../hooks";
 
 const styledImageTiles = mq({
   display: "grid",
@@ -7,10 +8,11 @@ const styledImageTiles = mq({
 });
 
 const ImageTiles:React.FC<any> = ({data}) => {
+  const optimizely = useOptimizely();
   return (
     <div css={styledImageTiles}>
       {Array.isArray(data) && data?.map((product:any, i:number) => (
-        <div css={{ display: "flex", flexDirection: "column" }} key={i}>
+        <div css={{ display: optimizely === "3-products" && i === 0 ? "none": "flex", flexDirection: "column" }} key={i}>
           <div css={{ width: "100%" }}>
             <img css={{ width: "100%", aspectRatio: "1 / 1" }} src={product?.fields?.image?.fields?.file?.url} alt="" />
           </div>
