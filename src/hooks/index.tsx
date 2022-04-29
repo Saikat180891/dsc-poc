@@ -1,7 +1,5 @@
 import React from "react";
 
-export const ABtesting = React.createContext({});
-
 declare global {
   interface Window {
     optimizely: any;
@@ -20,7 +18,6 @@ const activeExperimentVariations:ActiveExperiments = {
 }
 
 export const useOptimizely:any = () => {
-//   const context = React.useContext(ABtesting);
 let variations: any = null;
   const state = window.optimizely.get("state");
   variations = Object.values(state.getVariationMap())[0];
