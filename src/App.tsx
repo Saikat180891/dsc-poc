@@ -12,6 +12,9 @@ const usePageDetails = () => {
   const fetchPageDetails = React.useCallback(async () => {
     try {
       const pageDetails = await client.getEntries({ content_type: "homePage" });
+      const landingPage = await client.getEntries({content_type: "landingPage"});
+      console.log("landing page", landingPage)
+
       setSections(pageDetails?.items?.[0]?.fields);
       console.log(pageDetails.items[0].fields);
     } catch (error) {
